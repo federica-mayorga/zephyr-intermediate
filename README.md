@@ -21,9 +21,12 @@ Make sure to select appropriate OS and to perform all steps till
 | Tag | Task | Notes |
 |-----|------|-------|
 | `l1-task1` | Ready vs Waiting, `k_yield` vs `k_sleep` | [docs/l1-task1.md](docs/l1-task1.md) |
+| `l2-task1` | Observe and fix a race condition | [docs/l2-task1.md](docs/l2-task1.md) |
 
-Build and flash:
+Each tag is a snapshot of `app/` for that task. Build and flash a task with:
 
     cd app
-    west build -b nrf54l15dk/nrf54l15/cpuapp -d build-l1-task1 .
-    west flash -d build-l1-task1
+    west build -b nrf54l15dk/nrf54l15/cpuapp -d build-<tag> .
+    west flash -d build-<tag>
+
+Add `-p` when switching boards or after changing `prj.conf`.

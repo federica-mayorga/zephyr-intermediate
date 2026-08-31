@@ -10,10 +10,14 @@ LOG_MODULE_REGISTER(demo, LOG_LEVEL_DBG);
 
 static volatile uint32_t counter;
 
+K_MUTEX_DEFINE(lock);
+
 static void worker_fn(void *p1, void *p2, void *p3)
 {
     for (int i = 0; i < ITERATIONS; i++) {
+        k_mutex_lock(&lock, K_FOREVER);
         counter++;
+        k_mutex_unlock(&lock);
     }
 }
 
